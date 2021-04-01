@@ -20,6 +20,10 @@ public class TopicGui extends JFrame implements ActionListener
 
 {
 	JButton Button1,Button2;
+	List<String> file_1 = new ArrayList<String>();
+	List<String> file_2 = new ArrayList<String>();
+	boolean check1; 
+	boolean check2;
 	JPanel panel;
 	final JFileChooser fc = new JFileChooser();
 	TopicGui(String title)
@@ -42,8 +46,8 @@ public class TopicGui extends JFrame implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		List<String> file_1 = new ArrayList<String>();
-		List<String> file_2 = new ArrayList<String>();
+		//List<String> file_1 = new ArrayList<String>();
+		//List<String> file_2 = new ArrayList<String>();
 		if(arg0.getSource() == Button1)
 		{
 			int buttonChoose = fc.showOpenDialog(Button1);
@@ -55,9 +59,9 @@ public class TopicGui extends JFrame implements ActionListener
 					while (newScan.hasNextLine())
 					{
 						file_1.add(newScan.nextLine());
-						for(int i = 0;i < file_1.size(); i++) {
-							System.out.println(file_1.get(i));
-						}
+						//for(int i = 0;i < file_1.size(); i++) {
+						//	System.out.println(file_1.get(i));
+						//}
 					}
 					newScan.close();
 				} catch (FileNotFoundException e) {
@@ -78,9 +82,10 @@ public class TopicGui extends JFrame implements ActionListener
 					while (newScan2.hasNextLine())
 					{
 						file_2.add(newScan2.nextLine());
-						for(int i = 0;i < file_2.size(); i++) {
-							System.out.println(file_2.get(i));
-						}
+						printFiles();
+						//for(int i = 0;i < file_2.size(); i++) {
+						//	System.out.println(file_2.get(i));
+						//}
 					}
 					newScan2.close();
 				} catch (FileNotFoundException e) {
@@ -90,6 +95,25 @@ public class TopicGui extends JFrame implements ActionListener
 				
 			}
 	}
+		doTheyEqual();
+		
  }
 	
+	
+	public void printFiles() {
+		System.out.println(file_1);
+		System.out.println(file_2) ;
+	}
+	
+	public void doTheyEqual() {
+		if(file_1.equals(file_2)) {
+			System.out.println("These are the same file");
+		}
+		else {
+			System.out.println("These may be similiar in topic");
+		}
+	}
+	
 }
+
+
