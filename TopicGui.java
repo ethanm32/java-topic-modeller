@@ -14,7 +14,11 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.PriorityQueue;
 import java.util.Scanner;
 
 import javax.swing.JFileChooser;
@@ -104,9 +108,12 @@ public class TopicGui extends JFrame implements ActionListener
 					         sb.append(" ");
 					      }
 						String str2 = sb.toString();
-						removeStopWords1(str, stop);
-						removeStopWords2(str2, stop);
+						//removeStopWords1(str, stop);
+						//removeStopWords2(str2, stop);
+						printingOutArrayLists();
 						printFiles();
+						System.out.println(TenFreq(convertarray1(), 10));
+						System.out.println(TenFreq(convertarray2(), 10));
 						//for(int i = 0;i < file_2.size(); i++) {
 						//	System.out.println(file_2.get(i));
 						//}
@@ -142,9 +149,9 @@ public class TopicGui extends JFrame implements ActionListener
 	}
 	
 	
-	public static void removeStopWords1(String document, String[] stopwords) {
+	public static ArrayList removeStopWords1(String document, String[] stopwords) {
 		document = document.toLowerCase().trim();
-		
+		   
 		ArrayList<String> words = new ArrayList<>();
 		words.addAll(Arrays.asList(document.split(" ")));
 		
@@ -152,13 +159,13 @@ public class TopicGui extends JFrame implements ActionListener
 		stopList.addAll(Arrays.asList(stopwords));
 		
 		words.removeAll(stopList);
-		System.out.println("Text without stop words 1 : " + words.toString());
-		
+		//System.out.println("Text without stop words 1 : " + words.toString());
+		return words;
 		
 		
 	}
 	
-	public static void removeStopWords2(String document, String[] stopwords) {
+	public static ArrayList removeStopWords2(String document, String[] stopwords) {
 		document = document.toLowerCase().trim();
 		
 		ArrayList<String> words2 = new ArrayList<>();
@@ -168,11 +175,78 @@ public class TopicGui extends JFrame implements ActionListener
 		stopList2.addAll(Arrays.asList(stopwords));
 		
 		words2.removeAll(stopList2);
-		System.out.println("Text without stop word 2: " + words2.toString());
-		
+		//System.out.println("Text without stop word 2: " + words2.toString());
+		return words2;
 		
 		
 	}
+	
+	
+	public void printingOutArrayLists() {
+		ArrayList<String> List1 = new ArrayList<>();
+		List1.addAll(removeStopWords1(str,stop));
+		ArrayList<String> List2 = new ArrayList<>();
+		List2.addAll(removeStopWords2(str,stop));
+		System.out.println("Hi" + List1);
+		System.out.println("Hi" + List2);
+	}
+	
+	public String[] convertarray1() {
+		ArrayList<String> List1 = new ArrayList<>();
+		List1.addAll(removeStopWords1(str,stop));
+		String[] wordArray1 = new String[List1.size()];
+		wordArray1 = List1.toArray(wordArray1);
+		return wordArray1;
+		
+	}
+	public String[] convertarray2() {
+		ArrayList<String> List2 = new ArrayList<>();
+		List2.addAll(removeStopWords2(str,stop)); 
+		String[] wordArray2 = new String[List2.size()];
+		wordArray2 = List2.toArray(wordArray2);
+		return wordArray2;
+		
+	}
+	
+	
+	//Priority queue algorithm approach with help from - https://www.youtube.com/watch?v=cupg2TGIkyM
+	public List<String> TenFreq(String[] words, int k) {
+		Map<String, Integer> map = new HashMap<>();
+		for (String word: words) {
+			map.put(word, map.getOrDefault(word,0) + 1);
+			
+		}
+		
+		PriorityQueue<String> queue = new PriorityQueue<>(new Comparator<String>() {
+
+			@Override
+			public int compare(String word1, String word2) {
+				int frequency1 = map.get(word1);
+				int frequency2 = map.get(word2);
+				if(frequency1 == frequency2) {
+					return word2.compareTo(word1);
+				}
+				return frequency1 - frequency2;
+			}
+		});
+		
+		for (Map.Entry<String, Integer> entry : map.entrySet()) {
+			queue.add(entry.getKey());
+			if(queue.size() > k) queue.poll();
+		}
+		
+		List<String> frequentWords = new ArrayList<>();
+		while (!queue.isEmpty()) {
+			frequentWords.add(queue.poll());
+		}
+		
+		
+		Collections.reverse(frequentWords);
+		
+		return frequentWords;
+	}
+	
+	
 }
 
 
