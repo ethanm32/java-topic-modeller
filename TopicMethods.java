@@ -11,31 +11,31 @@ import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Set;
 
+import javax.swing.JOptionPane;
+
 public class TopicMethods {
-	public static ArrayList removeStopWords1(String document, String[] stopwords) {
+	public static ArrayList removeStopWords1(String document, ArrayList<String> stopwords) {
 		document = document.toLowerCase().trim();
 		   
 		ArrayList<String> words = new ArrayList<>();
 		words.addAll(Arrays.asList(document.split(" ")));
 		
-		List<String> stopList = new ArrayList<>();
-		stopList.addAll(Arrays.asList(stopwords));
+		//List<String> stopList = new ArrayList<>();
+		//stopList.addAll(Arrays.asList(stopwords));
 		
-		words.removeAll(stopList);
+		words.removeAll(stopwords);
 		//System.out.println("Text without stop words 1 : " + words.toString());
 		return words;
 		}
 	
-		public static ArrayList removeStopWords2(String document, String[] stopwords) {
+		public static ArrayList removeStopWords2(String document, ArrayList<String> stopwords) {
 			document = document.toLowerCase().trim();
 			
 			ArrayList<String> words2 = new ArrayList<>();
 			words2.addAll(Arrays.asList(document.split(" ")));
 			
-			List<String> stopList2 = new ArrayList<>();
-			stopList2.addAll(Arrays.asList(stopwords));
 			
-			words2.removeAll(stopList2);
+			words2.removeAll(stopwords);
 			//System.out.println("Text without stop word 2: " + words2.toString());
 			return words2;
 			
@@ -80,27 +80,23 @@ public class TopicMethods {
 		
 		
 		
-		public void arrayCheck(String[] arrayList1, String[] arrayList2) {
-	        Set<String> set1 = new HashSet<String>();
-	        Set<String> set2 = new HashSet<String>();
-	        Collections.addAll(set1, arrayList1);
-	        Collections.addAll(set2, arrayList2);
-	        //System.out.println("set1" + set1);
-	        //System.out.println("set2" + set2);
+		public String arrayCheck(List<String> setArray1, List<String> setArray2) {
+	        Set<String> set1 = new HashSet<String>(setArray1);
+	        Set<String> set2 = new HashSet<String>(setArray2);
+	        System.out.println("set1" + set1);
+	        System.out.println("set2" + set2);
 	        set1.retainAll(set2);
-	        
+	        System.out.println("This is " + set1);
 	        int size = set1.size();
 	        
 	        int percentage = size * 10;
 	        
 	        if(percentage < 50) { 
-	        	System.out.println("Percentage:" + percentage);
-	        	System.out.println("These two documents have very little in common");
+	        	return "Percentage:" + percentage + "\n" + "These two documents have very little in common";
 	        }
-	        else { 
-	        	System.out.println("Percentage:" + percentage);
-	        	System.out.println("These two documents have quite a bit in common");
-	        }
+	       
+	        return "Percentage:" + percentage + "These two documents have quite a bit in common";
+	        
 	        
 	        
 	    }
