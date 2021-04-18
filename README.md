@@ -8,14 +8,14 @@ Video link - https://www.youtube.com/watch?v=gEWS3K-JPgg
 There are three classes utilised in this assignment. They are:
 
 
-**Topic Gui:
+Topic Gui:
    - This class creates the GUI. The layout of the GUI is altered in this class.
    - There are 2 buttons, a text field, a text area and 4 panels created.
    - The action performed methods are in this class.The actions performed are clicking two buttons and also entering text.
    - There are also methods that convert the Array lists containing each document to normal arrays.
   
 
-**Topic Methods:
+Topic Methods:
   - This class contains most of the methods for this program.
   - It contains a remove stop words method which removes all stopwords and returns the new array list.
   - It contains a method that gets the top ten most frequent words in each document.This piece of code was written with help from this link: 
@@ -24,12 +24,12 @@ There are three classes utilised in this assignment. They are:
   - The class also contains two methods that display details for the user in a text area.
 
 
-**Control:
+Control:
  - This class simply runs the GUI for the program
 
 
 
-**Core functionality:
+Core functionality:
 
 - The core functionality included in this program is:
          - Two buttons that allow files to be taken in and compared.
@@ -38,7 +38,7 @@ There are three classes utilised in this assignment. They are:
          - A method that gives the common words in each document as a percentage.
 
 
-**Additional functionality:
+Additional functionality:
 
 - The additional functionality included in this program is:
          - There is a slightly improved GUI.
@@ -47,7 +47,7 @@ There are three classes utilised in this assignment. They are:
          - Extra details are also displayed in a text area for the user.
 
 
-**What I would do if I had more time:
+What I would do if I had more time:
 
 -If I had more time:
 
