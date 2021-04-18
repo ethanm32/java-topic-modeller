@@ -1,7 +1,5 @@
 package com.topic.modeller;
 
-import java.util.ArrayList;
-
 public class Control {
 
 	public static void main(String[] args) {
