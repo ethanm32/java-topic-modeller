@@ -1,6 +1,10 @@
 # java-topic-modeller
 Java topic modeller assignment
 
+Github link - https://github.com/ethanm32/java-topic-modeller
+
+Video link - https://www.youtube.com/watch?v=gEWS3K-JPgg
+
 There are three classes utilised in this assignment. They are:
 
 
